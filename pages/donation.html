@@ -7,9 +7,61 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div id="header"></div>
-    <div id="nav"></div>
-    <div id="footer"></div>
+    <header>
+        <div id="header">
+            <h1>DONATION TRACKER</h1>
+        </div>
+    </header>
+    
+    <div id="nav">
+        <nav>
+            <ul id="navbar">
+                <li><a href="./donation.html">Donation Tracker</a></li>
+                <li><a href="./event.html">Event Tracker</a></li>
+                <li><a href="./volunteer.html">Volunteer Tracker</a></li>
+            </ul>        
+        </nav>
+    </div>
+    <main>
+        <section>
+            <form id="donation_form">
+                <div id="content_area">
+                    <label for="name">Charity Name</label>
+                    <input type="text" id="name">
+                </div>
+                <div id="content_area">
+                    <label for="amount">Donation Amount</label>
+                    <input type="number" id="amount">
+                </div>
+                <div id="content_area">
+                    <label for="date">Date of Donation</label>
+                    <input type="date" id="date">   
+                </div>
+                <div id="content_area">
+                    <label for="message">Donor Comment/Message:</label>
+                    <textarea id="message" name="message"></textarea>
+                    
+                </div>
+                
+                <button id="load-photo">Donate</button>
+            </form>
+        </section>
+        
+    </main>
+
+
+    <div id="footer">
+        <p class="shop_address">More Ways to shop <a href="">find our store</a>Or call <a href="">204-963-758</a></p>
+        <p><a href="">Canada(english)</a>| <a href="">Francais</a></p>
+      <p>Copyright &#169; community support tracker , All rights reserved.</p>
+        <div class="footer_link"> 
+            <a href="">Privacy Policy </a>| 
+            <a href="">Use of Cookies</a>| 
+            <a href="">Terms of Use </a>| 
+            <a href="">Connect With us</a>| 
+            <a href="">Legal </a>| 
+        </div>
+    </div>
     <script src="/js/shared.js"></script>
 </body>
 </html>

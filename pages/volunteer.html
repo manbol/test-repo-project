@@ -19,14 +19,17 @@
                 <div id="content_area">
                     <label for="name">Charity Name</label>
                     <input type="text" id="name">
+                    <span id="name_error"></span>
                 </div>
                 <div id="content_area">
                     <label for="amount">Hours Volunteered</label>
                     <input type="number" id="amount">
+                    <span id="hours_error"></span>
                 </div>
                 <div id="content_area">
                     <label for="date">Date Volunteered</label>
-                    <input type="date" id="date">   
+                    <input type="date" id="date">
+                    <span id="date_error"></span>   
                 </div>
                 <div id="content_area">
                     <fieldset class="star-rating"> 
@@ -46,6 +49,8 @@
                          <input type="radio" id="star1" name="rating" value="1">
                          <label for="star1" title="1 star">&#9734;</label> 
                         </fieldset>
+
+                        <span id="stars_error"></span>
                 </div>
                 
                 <button id="submit-hours">Submit Hours</button>

@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     form.addEventListener("submit",(event)=>{
         event.preventDefault();
         clearErrors();
-        console.log("button was triggered")
-
+        console.log("data is intriguing")
         const charityName = document.getElementById("name");
         const donationAmount = document.getElementById("amount");
         const donationDate = document.getElementById("date");
@@ -40,16 +39,27 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
         
 })
-    function showError(fieldId, message) {
-        const field = document.getElementById(fieldId);
-        const errorElement = document.createElement('div');
-        errorElement.className = 'error-message';
-        errorElement.textContent = message;
-        field.parentElement.appendChild(errorElement);
-        field.classList.add('error');
-    }
-    function clearErrors() {
-        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-    }
-  
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorElement = document.createElement('div');
+    errorElement.className = "error-message";
+    errorElement.textContent = message;
+    field.parentElement.appendChild(errorElement);
+    field.classList.add('error');
+}
+function clearErrors() {
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+}
+
 });
+
+if(typeof window === "undefined") {
+    // window object represents the browser window
+    module.exports = { showError, clearErrors };
+} else {
+    // if undefined, window object is not available
+    // typically result of working in a Node environment
+    const form = document.getElementById("donation_form");
+    window.onload =form
+    
+}

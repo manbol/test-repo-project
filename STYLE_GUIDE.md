@@ -9,6 +9,9 @@ Websites we're taking inspiration from:
 ![image](https://github.com/user-attachments/assets/8a1ad701-6d49-4df5-95b9-6b5287a04ef0)
 
 ### Color Palette
+**Main Font Color**
+- #202122
+
 **Main Background Colors**
 - #ffffff (White)
 
@@ -26,6 +29,8 @@ Websites we're taking inspiration from:
 
 ![image](https://github.com/user-attachments/assets/5e2c0a13-1c9e-4b20-9029-6e54bd0bd859)
 
+- #d1d9e0 (Borders)
+
 **Link Colors**
 - #0097e1 (Unhovered)
 
@@ -35,7 +40,4 @@ Websites we're taking inspiration from:
 
 ![image](https://github.com/user-attachments/assets/e59ca88c-771b-4e07-af26-fea34a7d3775)
 
-- #788289 (Unhovered) - For footer
-
-![image](https://github.com/user-attachments/assets/43b71bea-c4cc-49cb-bc7a-eca3c8f7cebe)
-
+- #525a5f (Unhovered) - For footer

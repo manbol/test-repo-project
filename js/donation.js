@@ -1,9 +1,10 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+function init(){
+    
     const form = document.getElementById("donation_form");
     form.addEventListener("submit",(event)=>{
         event.preventDefault();
         clearErrors();
-        console.log("data is intriguing")
+
         const charityName = document.getElementById("name");
         const donationAmount = document.getElementById("amount");
         const donationDate = document.getElementById("date");
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             showError("text_error","Name field cannot be empty");
             isvalied=false;
         }
-        if (!donationAmount.value || donationAmount< 0){
+        if (!donationAmount.value || donationAmount.value< 0){
             showError("amount_error","Please enter donation amount");
             isvalied=false;
         }
@@ -39,6 +40,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
         
 })
+    
+};
+
+
 function showError(fieldId, message) {
     const field = document.getElementById(fieldId);
     const errorElement = document.createElement('div');
@@ -51,15 +56,10 @@ function clearErrors() {
     document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
 }
 
-});
-
 if(typeof window === "undefined") {
-    // window object represents the browser window
-    module.exports = { showError, clearErrors };
+
+module.exports = { showError, clearErrors };
 } else {
-    // if undefined, window object is not available
-    // typically result of working in a Node environment
-    const form = document.getElementById("donation_form");
-    window.onload =form
-    
+
+window.onload = init
 }

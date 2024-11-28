@@ -16,7 +16,7 @@ function loadTemplate(templatePath, targetElementId) {
 // Function to determine the base path dynamically
 function getBasePath() {
     const currentPath = window.location.pathname; // Current page path
-    const pathDepth = (currentPath.match(/\//g) || []).length - 1; // Number of "/" in path
+    const pathDepth = (currentPath.match(/\//g) || []).length - 2; // Number of "/" in path
     return '../'.repeat(pathDepth); // Backtrack to the root
 }
 

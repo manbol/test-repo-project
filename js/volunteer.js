@@ -127,24 +127,37 @@ validateStarRating = () => {
     const starError = document.querySelector("#star_error");
     const starErrorBox = document.querySelector("#star-error-box");
 
+    // Clear previous error messages
     while (starError.firstChild) {
         starError.removeChild(starError.firstChild);
     }
 
-    let starRatingValue = starRating.value;
+    // Convert input value to a number
+    let starRatingValue = Number(starRating.value);
     console.log(starRatingValue);
 
-    if(!Number.isInteger(starRatingValue)) {
-        // creating error message
+    // Validate integer and range
+    if (!Number.isInteger(starRatingValue)) {
+        // Creating error message
         const errorMessage = document.createElement('p');
-        
-        errorMessage.innerText = "You must provide an integer."
+        errorMessage.innerText = "You must provide an integer.";
 
-        // adding the error message
+        // Adding the error message
+        starError.appendChild(errorMessage);
+        starErrorBox.appendChild(starError);
+
+        return false;
+    } else if (starRatingValue < 1 || starRatingValue > 5) {
+        // Validate the range of the star rating
+        const errorMessage = document.createElement('p');
+        errorMessage.innerText = "Star rating must be between 1 and 5.";
+
+        // Adding the error message
         starError.appendChild(errorMessage);
         starErrorBox.appendChild(starError);
 
         return false;
     }
+
     return true;
 }

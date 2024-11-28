@@ -7,9 +7,50 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div id="header"></div>
-    <div id="nav"></div>
-    <div id="footer"></div>
+    <div id="header">
+        <!-- Injected by Javascript -->
+    </div>
+    <div id="nav">
+        <!-- Injected by Javascript -->
+    </div>
+
+    <main>
+        
+        <form id="event-form">
+            <!-- Event Name -->
+            <div>
+                <input type="text" id="event-name" name="event_name" placeholder="Event Name" required>
+            </div>
+
+            <!-- Company Representative's Name -->
+            <div>
+                <input type="text" id="representative-name" name="representative_name" placeholder="Name" required>
+            </div>
+
+            <!-- Representative's Email -->
+            <div>
+                <input type="email" id="representative-email" name="representative_email" placeholder="Email" required>
+            </div>
+
+            <!-- Role Selection -->
+            <select id="role-selection" name="role_selection" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="sponsor">Sponsor</option>
+                <option value="participant">Participant</option>
+                <option value="organizer">Organizer</option>
+            </select>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+    </main>
+
+    <div id="footer">
+        <!-- Injected by Javascript -->
+    </div>
     <script src="/js/shared.js"></script>
 </body>
 </html>

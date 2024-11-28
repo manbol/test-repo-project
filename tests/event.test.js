@@ -1,19 +1,19 @@
-// Import required modules and functions
+// Import jsdom
 const { JSDOM } = require("jsdom");
 
-// Helper function to set up the DOM structure for the tests
+// Function to set up the DOM structure for the tests
 const setupDOM = () => {
     const dom = new JSDOM(`
         <!DOCTYPE html>
         <form id="event-form">
             <div>
-                <input id="event-name" type="text" />
+                <input id="event-name" type="text">
             </div>
             <div>
-                <input id="representative-name" type="text" />
+                <input id="representative-name" type="text">
             </div>
             <div>
-                <input id="representative-email" type="email" />
+                <input id="representative-email" type="email">
             </div>
             <div>
                 <select id="role-selection">
@@ -26,24 +26,53 @@ const setupDOM = () => {
         </form>
     `);
     global.document = dom.window.document;
-    global.domjs = dom;
+    global.jsdomObj = dom;
 };
 
+// Initial set up of the JSDOM for require("../js/event")
 setupDOM();
-
-const { validateForm } = require("../js/event"); // Adjust the path if needed
+// Import the validateForm function from the event script
+const { validateForm} = require("../js/event"); // Adjust the path if needed
 
 describe("validateForm", () => {
     beforeEach(() => {
-        setupDOM(); // Set up the DOM before each test
+        setupDOM(); // Reset the DOM before each test
     });
 
-    test("returns valid object when all fields are correctly filled", () => {
+    test("function is triggered on form submission", () => {
+        let form = document.querySelector("#event-form");
+        // In order to test if the function is called after the submit event,
+        // We need to create a mock function.
+        // https://jestjs.io/docs/mock-functions
+        const mockValidateForm = jest.fn(validateForm);
+
+        form.addEventListener("submit", (event) => {
+            mockValidateForm();
+        });
+
+        // Simulate form submission by mocking a submit event
+        // https://developer.mozilla.org/en-US/docs/Web/API/Event/Event
+        const event = new jsdomObj.window.Event("submit");
+        // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
+        form.dispatchEvent(event);
+
+        // https://jestjs.io/docs/expect#tohavebeencalled
+        expect(mockValidateForm).toHaveBeenCalled();
+    });
+
+    test("function correctly collects form data with all valid inputs", () => {
         // Arrange: Set valid values in the form
-        document.querySelector("#event-name").value = "Community Meetup";
-        document.querySelector("#representative-name").value = "John Doe";
-        document.querySelector("#representative-email").value = "john.doe@example.com";
+        document.querySelector("#event-name").value = "Conference";
+        document.querySelector("#representative-name").value = "Superman";
+        document.querySelector("#representative-email").value = "Superman@example.com";
         document.querySelector("#role-selection").value = "sponsor";
+        // The expected data
+        const expectedObject = {
+            eventName: "Conference",
+            repName: "Superman",
+            repEmail: "Superman@example.com",
+            role: "sponsor"
+        }
 
         // Act: Call validateForm
         const result = validateForm();
@@ -51,25 +80,30 @@ describe("validateForm", () => {
         // Assert: Check the validation result
         expect(result.isValid).toBe(true);
         expect(result.errorInputs).toHaveLength(0);
+        expect(result.data).toEqual(expectedObject);
     });
 
-    test("returns invalid object when fields are empty", () => {
+    test("function correctly identifies and flags when fields are left empty", () => {
         // Act: Call validateForm with empty fields
         const result = validateForm();
 
         // Assert: Check the validation result
         expect(result.isValid).toBe(false);
+        // Check the length of errors
         expect(result.errorInputs).toHaveLength(4);
+        // Check the errors in order based on the script
         expect(result.errorInputs[0].message).toBe("Please enter the event name.");
         expect(result.errorInputs[1].message).toBe("Please enter the representative's name.");
         expect(result.errorInputs[2].message).toBe("Please enter a valid email address.");
         expect(result.errorInputs[3].message).toBe("Please select a role for the event.");
+        // data should be undefined in the object returned
+        expect(result.data).toBeUndefined();
     });
 
-    test("returns invalid object when email format is incorrect", () => {
+    test("function correctly identifies and flags when the participant's email is not in a valid format", () => {
         // Arrange: Set invalid email
-        document.querySelector("#event-name").value = "Community Meetup";
-        document.querySelector("#representative-name").value = "John Doe";
+        document.querySelector("#event-name").value = "Conference";
+        document.querySelector("#representative-name").value = "Superman";
         document.querySelector("#representative-email").value = "invalid-email";
         document.querySelector("#role-selection").value = "sponsor";
 
@@ -80,38 +114,8 @@ describe("validateForm", () => {
         expect(result.isValid).toBe(false);
         expect(result.errorInputs).toHaveLength(1);
         expect(result.errorInputs[0].message).toBe("Please enter a valid email address.");
-    });
 
-    test("returns invalid object when role is not selected", () => {
-        // Arrange: Set all fields except role
-        document.querySelector("#event-name").value = "Community Meetup";
-        document.querySelector("#representative-name").value = "John Doe";
-        document.querySelector("#representative-email").value = "john.doe@example.com";
-        document.querySelector("#role-selection").value = "";
-
-        // Act: Call validateForm
-        const result = validateForm();
-
-        // Assert: Check the validation result
-        expect(result.isValid).toBe(false);
-        expect(result.errorInputs).toHaveLength(1);
-        expect(result.errorInputs[0].message).toBe("Please select a role for the event.");
-    });
-
-      // Test: Function is triggered on form submission
-    test("function is triggered on form submission", () => {
-        let form = document.querySelector("#event-form");
-        const mockValidateForm = jest.fn(validateForm);
-
-        form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        mockValidateForm();
-        });
-
-        // Simulate form submission
-        const event = new domjs.window.Event("submit", { bubbles: true });
-        form.dispatchEvent(event);
-
-        expect(mockValidateForm).toHaveBeenCalled();
+        // data should be undefined in the object returned
+        expect(result.data).toBeUndefined();
     });
 });

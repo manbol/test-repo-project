@@ -19,7 +19,7 @@ formNode.addEventListener("submit", (event) => {
         });
     } else {
         alert("Form submitted successfully!");
-        formNode.submit();
+        // formNode.submit();   // Comment this out. We aren't really submitting to a server
     }
 });
 
@@ -78,6 +78,17 @@ const validateForm = () => {
             node: roleSelectionNode.parentNode,
             message: "Please select a role for the event.",
         });
+    }
+
+    if(isValid){
+        let data = {
+            eventName: eventNameNode.value,
+            repName: representativeNameNode.value,
+            repEmail: representativeEmailNode.value,
+            role: roleSelectionNode.value
+        };
+
+        return { isValid, errorInputs, data};
     }
 
     return { isValid, errorInputs };

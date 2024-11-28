@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events</title>
+    <link rel="stylesheet" href="/css/event.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -19,20 +20,24 @@
         <form id="event-form">
             <!-- Event Name -->
             <div>
+                <span>Event Name:</span>
                 <input type="text" id="event-name" placeholder="Event Name">
             </div>
 
             <!-- Company Representative's Name -->
             <div>
+                <span>Participant's Name:</span>
                 <input type="text" id="representative-name" placeholder="Name">
             </div>
 
             <!-- Representative's Email -->
             <div>
+                <span>Participant's Email:</span>
                 <input type="email" id="representative-email" placeholder="Email">
             </div>
 
             <div>
+                <label for="role-selection">Role:</label>
                 <!-- Role Selection -->
                 <select id="role-selection">
                     <option value="" disabled selected>Select Role</option>

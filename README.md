@@ -1,3 +1,13 @@
+# Group Composition
+- Manuel Buitizon
+- Fatema Turaba
+- Corey Wojcik
+
+**Group Responsibilities**
+- Fatema Turaba: Donation Tracker Component
+- Corey Wojcik: Volunteer Hours Tracker Component
+- Manuel Buitizon Event Signup Component
+
 # Initial Design of Directory Structure
 ```
 FINAL_GROUP_PROJECT/

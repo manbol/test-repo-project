@@ -23,6 +23,7 @@ function getBasePath() {
 // Load shared components
 document.addEventListener('DOMContentLoaded', () => {
     const basePath = getBasePath(); // Dynamically calculate the base path
+    console.log(basePath);
     loadTemplate(`${basePath}templates/header.html`, 'header');
     loadTemplate(`${basePath}templates/navbar.html`, 'nav');
     loadTemplate(`${basePath}templates/footer.html`, 'footer');

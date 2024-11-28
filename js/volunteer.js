@@ -14,6 +14,14 @@ volunteerFormNode.addEventListener("submit", (event) => {
         isFormFilledProperly = false;
     }
 
+    if(!validateDate()) {
+        isFormFilledProperly = false;
+    }
+    
+    if(!validateStarRating()) {
+        isFormFilledProperly = false;
+    }
+
     if (!isFormFilledProperly === true){
         event.preventDefault()
     }
@@ -85,4 +93,58 @@ validateHours = () => {
      }
     
      return true;
+}
+
+validateDate = () => {
+    const volunteerDate = document.querySelector("#date");
+    const dateError = document.querySelector("#date_error");
+    const dateErrorBox = document.querySelector("#date-error-box");
+
+    while (dateError.firstChild) {
+        dateError.removeChild(dateError.firstChild);
+    }
+
+    let volunteerDateValue = volunteerDate.value;
+    // console.log(volunteerDateValue)
+
+    if(volunteerDateValue.length <= 0) {
+        const errorMessage = document.createElement('p');
+
+        errorMessage.innerText = "Please pick a date."
+
+        // adding the error message
+        dateError.appendChild(errorMessage);
+        dateErrorBox.appendChild(dateError);
+
+        return false;
+    }
+    
+    return true;
+}
+
+validateStarRating = () => {
+    const starRating = document.querySelector("#star_rating");
+    const starError = document.querySelector("#star_error");
+    const starErrorBox = document.querySelector("#star-error-box");
+
+    while (starError.firstChild) {
+        starError.removeChild(starError.firstChild);
+    }
+
+    let starRatingValue = starRating.value;
+    console.log(starRatingValue);
+
+    if(!Number.isInteger(starRatingValue)) {
+        // creating error message
+        const errorMessage = document.createElement('p');
+        
+        errorMessage.innerText = "You must provide an integer."
+
+        // adding the error message
+        starError.appendChild(errorMessage);
+        starErrorBox.appendChild(starError);
+
+        return false;
+    }
+    return true;
 }

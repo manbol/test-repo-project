@@ -102,3 +102,8 @@ const clearErrors = () => {
         node.remove();
     });
 };
+
+if(typeof window === "undefined") {
+    // window object represents the browser window
+    module.exports = {validateForm};
+}

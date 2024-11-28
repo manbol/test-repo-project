@@ -1,0 +1,54 @@
+name: Run Jest Tests
+
+# what github actions will cause this workflow
+on: [pull_request]
+
+# allow the workflow to read and write to different components
+# specifically, write checks to pull requests
+permissions:
+    contents: read
+    issues: read
+    checks: write
+    pull-requests: write
+
+# what work will take place in the workflow on the action
+jobs:
+    # build action
+    build:
+        # runs on a virtual ubuntu machine in the latest version
+        runs-on: ubuntu-latest
+     
+        # steps that will take place over the workflow
+        steps:
+            # setup node environment
+            # checkout the current branch (this workflow is written externally)
+            - uses: actions/checkout@v4
+            - name: Use Node.js
+            # install node on the virtual environment
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20.x"
+
+            # install all node packages
+            - name: Install Dependencies
+            # same as npm install, but specifically designed for automated environments
+              run: npm ci
+
+            #   invoke the npm test script that we wrote
+            - name: Run Jest Tests
+              run: npm test
+
+            #  upload any new files created in the test-results/jest
+            - name: Archive Jest Test Results
+              if: always()
+              uses: actions/upload-artifact@v3
+              with:
+                name: jest-test-results
+                path: test-results/jest/
+
+            # publish the unit test file after the test has run
+            - name: Publish Test Results
+              uses: EnricoMi/publish-unit-test-result-action@v2
+              if: always()
+              with:
+                files: test-results/jest/*.xml

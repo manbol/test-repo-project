@@ -14,3 +14,19 @@
         </li>
     </ul>
 </nav>
+
+<script>
+    // Function to calculate the base path
+    function getBasePath() {
+        const currentPath = window.location.pathname;
+        const depth = (currentPath.match(/\//g) || []).length - 2; // Adjust for project depth
+        return '../'.repeat(depth);
+    }
+
+    // Dynamically set paths
+    const basePath = getBasePath();
+    document.getElementById('home-link').href = `${basePath}index.html`;
+    document.getElementById('donation-link').href = `${basePath}pages/donation.html`;
+    document.getElementById('event-link').href = `${basePath}pages/event.html`;
+    document.getElementById('volunteer-link').href = `${basePath}pages/volunteer.html`;
+</script>

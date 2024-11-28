@@ -34,7 +34,7 @@ setupDOM();
 // Import the validateForm function from the event script
 const { validateForm} = require("../js/event"); // Adjust the path if needed
 
-describe("validateForm", () => {
+describe("eventValidateForm", () => {
     beforeEach(() => {
         setupDOM(); // Reset the DOM before each test
     });

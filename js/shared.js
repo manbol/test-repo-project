@@ -10,7 +10,7 @@ function loadTemplate(templatePath, targetElementId) {
 
 // Load shared components
 document.addEventListener('DOMContentLoaded', () => {
-    loadTemplate('/templates/header.html', 'header');
-    loadTemplate('/templates/navbar.html', 'nav');
-    loadTemplate('/templates/footer.html', 'footer');
+    loadTemplate('../templates/header.html', 'header');
+    loadTemplate('../templates/navbar.html', 'nav');
+    loadTemplate('../templates/footer.html', 'footer');
 });

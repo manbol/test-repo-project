@@ -1,6 +1,6 @@
 // first, import the required modules
 // this makes the functions exported from the "required" file available
-const { showError , clearErrors} = require("../script.js");
+const { showError , clearErrors} = require("../js/donation");
 
 // import JSDOM module
 // because JSDOM is a module in node_modules, we don't need to include its path, only its name

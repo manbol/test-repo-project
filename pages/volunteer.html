@@ -7,9 +7,57 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div id="header"></div>
-    <div id="nav"></div>
-    <div id="footer"></div>
+    <div id="header">
+        <!-- Injected by Javascript -->
+    </div>
+    <div id="nav">
+        <!-- Injected by Javascript -->
+    </div>
+    <main>
+        <section>
+            <form id="volunteer_form">
+                <div id="content_area">
+                    <label for="name">Charity Name</label>
+                    <input type="text" id="name">
+                    <div id="name-error-box">
+                        <span id="name_error"></span>
+                    </div>
+                </div>
+                <div id="content_area">
+                    <label for="hours">Hours Volunteered</label>
+                    <input type="number" id="hours">
+                    <div id="hours-error-box">
+                        <span id="hours_error"></span>
+                    </div>
+                </div>
+                <div id="content_area">
+                    <label for="date">Date Volunteered</label>
+                    <input type="date" id="date">
+                    <div id="date-error-box">
+                        <span id="date_error"></span>
+                    </div>   
+                </div>
+
+                <div id="content_area">
+                    <label for="star-rating">Give a star rating (1= Lowest, 5= Highest)</label>
+                    <input type="number" id="star_rating">
+                    <div id="star-error-box">
+                        <span id="star_error"></span>
+                    </div>
+                </div>
+                
+                <button id="submit-hours">Submit Hours</button>
+            </form>
+        </section>
+        
+    </main>
+
+
+    <div id="footer">
+        <!-- Injected by Javascript -->
+    </div>
+    
+    <script src="/js/volunteer.js"></script>
     <script src="/js/shared.js"></script>
 </body>
 </html>

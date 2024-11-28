@@ -3,13 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donations</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/donation.css">
+    <title>Donation Tracker</title>
 </head>
 <body>
-    <div id="header"></div>
-    <div id="nav"></div>
-    <div id="footer"></div>
+    <div id="header">
+    <!-- injected by shared js -->
+
+    </div>
+    <div id="nav">
+    <!-- injected by shared js -->
+    </div>
+    <main>
+        <section>
+            <form id="donation_form">
+                <div id="content_area">
+                    <label for="name">Charity Name</label>
+                    <input type="text" id="name">
+                    <span id="name_error"></span>
+                </div>
+                <div id="content_area">
+                    <label for="amount">Donation Amount</label>
+                    <input type="number" id="amount">
+                    <span id="amount_error"></span>
+                </div>
+                <div id="content_area">
+                    <label for="date">Date of Donation</label>
+                    <input type="date" id="date">   
+                    <span id="date_error"></span>
+                </div>
+                <div id="content_area">
+                    <label for="message">Donor Message:</label>
+                    <textarea id="message" name="message"></textarea>
+                    <span id="text_error"></span> 
+                </div>
+                
+                <button id="submit_button">Donate</button>
+            </form>
+        </section>
+        
+    </main>
+    <div id="footer">
+        <!-- injected by shared js -->
+    </div>
+    <script src="/js/donation.js"></script>
     <script src="/js/shared.js"></script>
+    
 </body>
 </html>
